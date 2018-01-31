@@ -5,14 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>CategoryList</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Categorias</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-	<h1>Category List</h1>
+  <!-- <h1>Category List</h1> -->
+  <ion-list>
+      <ion-list-header>
+          Header
+        </ion-list-header>
+  	<ion-item *ngFor="let category of listData" (click)="itemClicked(category)">
+        <div text-capitalize>{{category.categoryId}} - {{category.categoryName|lowercase}}</div>
+  	</ion-item>
+  </ion-list>
 </ion-content>

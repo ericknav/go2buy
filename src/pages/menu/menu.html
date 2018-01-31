@@ -1,0 +1,19 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-list>
+      <button ion-item *ngFor="let page of linksPagesMenu" (click)="goToPagePush(page.controller,page.component)" menuClose>
+        <!--<ion-icon item-left name="{{page.icon}}"></ion-icon>-->
+        <ion-icon item-start [name]="page.icon" [color]="isActive(page)" ></ion-icon>
+        {{page.title}}
+      </button>
+    </ion-list>  
+  </ion-content>
+</ion-menu>
+<!--<ion-nav #NAV [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>-->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

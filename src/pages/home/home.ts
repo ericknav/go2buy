@@ -1,56 +1,50 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { CategoryListPage } from '../category-list/category-list';
+import { Storage } from '@ionic/storage';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { CategoryProvider } from '../../providers/category/category';
+import { BasePage } from '../../helpers/base-page';
+import { AuthProvider } from '../../providers/auth/auth';
+import { PageInterface } from '../../helpers/interfaces';
+import { MallListPage } from '../mall-list/mall-list';
+import { CategoryListPage } from '../category-list/category-list';
+import { ProductListPage } from '../product-list/product-list';
+
 //import { Subscriber } from 'rxjs/Subscriber';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
 
-	lists:any[] = [];
-	categoryList = [];
+export class HomePage extends BasePage {
+	
+
+	linksPagesContent: PageInterface[] = [
+		{ title: 'Supermercados', name: 'TabsPage', component: MallListPage, icon: 'cart', controller: this.nav },
+		{ title: 'Categorias', name: 'TabsPage', component: CategoryListPage, icon: 'list-box', controller: this.nav },
+		{ title: 'Productos', name: 'TabsPage', component: ProductListPage, icon: 'cafe', controller: this.nav }
+	  ];
+
+	  /*
+	linksPagesFooter: PageInterface[] = [
+		{ title: 'Home', name: 'TabsPage', component: HomePage, icon: 'home', controller: this.nav }
+	];*/
 
 	constructor(
-		public navCtrl: NavController,
-		private categoryProvider: CategoryProvider
+		private nav: NavController,
+		protected auth: AuthProvider,
+		protected navParams: NavParams,
+		protected loadingCtrl: LoadingController,
+		protected storage: Storage,
 	) {
-		this.getCategoryList();
-		/*
-  	this.lists.push({
-  		name: 'group A'
-  	});
-  	this.lists.push({
-  		name: 'group B'
-  	});
-  	this.lists.push({
-  		name: 'group C'
-		});
-		*/
-  }
-
-  goToCategoryListPage(){
-  	this.navCtrl.push(CategoryListPage);
-  }
-
-  getCategoryList(){
-		this.categoryProvider.getCategory()
-			.subscribe(
-				data => { 
-					this.categoryList = data; 
-					//console.log(this.categoryList); 
-					//console.log(data);
-				}/*,
-				err =>{
-					console.error("Error : "+err);
-				} ,
-				() => {
-					console.log('getData completed');
-					console.log(this.categoryList);
-				}*/
-			);
+		super(auth,navParams,loadingCtrl);
+		storage.remove('mailId');
 	}
+	
+	public logout() {
+    this.auth.logout().subscribe(succ => {
+      this.nav.setRoot('LoginPage')
+    });
+  }
 }

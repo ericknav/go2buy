@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 //import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IonicPage, NavParams } from 'ionic-angular';
 
+import { MallListPage } from '../mall-list/mall-list';
 import { CategoryListPage } from '../category-list/category-list';
-/**
- * Generated class for the TabsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ProductListPage } from '../product-list/product-list';
 
 @IonicPage()
 @Component({
@@ -17,10 +13,11 @@ import { CategoryListPage } from '../category-list/category-list';
 })
 export class TabsPage {
   // set the root pages for each tab
-  tabProductsRoot: any = CategoryListPage;
-  tabMallsRoot: any = CategoryListPage;
-  tabWhishRoot: any = CategoryListPage;
-  tabAboutRoot: any = CategoryListPage;
+  tabMallRoot: any = MallListPage;
+  tabCategoryRoot: any = CategoryListPage;
+  tabProductsRoot: any = ProductListPage;
+  //tabWhishRoot: any = CategoryListPage;
+  //tabAboutRoot: any = CategoryListPage;
   mySelectedIndex: number;
 
   //constructor(public navCtrl: NavController, public navParams: NavParams) {}

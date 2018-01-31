@@ -1,38 +1,82 @@
-<ion-menu [content]="NAV">
+<!-- -->
+<ion-split-pane>
+  <!-- logged out menu -->
+  <ion-menu id="loggedOutMenu" [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="outer-content">
+
+      <ion-list>
+        <ion-list-header>
+          Tutorial
+        </ion-list-header>
+        <button ion-item menuClose (click)="openTutorial()">
+          <ion-icon item-start name="hammer"></ion-icon>
+          Show Tutorial
+        </button>
+      </ion-list>
+
+      <!-- <img src="/assets/imgs/logo.png" alt="">--> 
+      <ion-list>
+        <button ion-item *ngFor="let page of linksPagesMenu" (click)="goToPage(page.component)" menuClose>
+          <ion-icon item-left name="{{page.icon}}"></ion-icon>
+          {{page.title}}
+        </button>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>Account</ion-list-header>
+        <button ion-item (click)="closeMenu()">
+          Profile
+        </button>
+        <button ion-item (click)="closeMenu()">
+          Settings
+        </button>
+        <button ion-item (click)="closeMenu()">
+          Login
+        </button>
+        <button ion-item (click)="closeMenu()">
+          Signup
+        </button>
+        <button ion-item (click)="closeMenu()">
+          Log out
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- logged in menu -->
+  <ion-menu id="loggedInMenu" [content]="content">
+
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content >
-        <img src="/assets/imgs/logo.png" alt="">
+  
+      <ion-content class="outer-content">
         <ion-list>
-          <ion-list-header>Malls</ion-list-header>
-          <button ion-item *ngFor="let page of appPages" (click)="goToPage(page.component)" menuClose>
-            <ion-icon item-left name="{{page.icon}}"></ion-icon>
-            {{page.title}}
-          </button>
-        </ion-list>
-        <ion-list-header>Products</ion-list-header>
-        <ion-list-header>Wish List</ion-list-header>
-        <ion-list-header><ion-icon item-left name="information-cicle"></ion-icon>About</ion-list-header>
-        <ion-list>
-          <ion-list-header>Account</ion-list-header>
-          <button ion-item (click)="closeMenu()">
-            Login
-          </button>
-          <button ion-item (click)="closeMenu()">
-            Setup
-          </button>
-          <button ion-item (click)="closeMenu()">
-            Signup
+          <ion-list-header>
+            Tutorial
+          </ion-list-header>
+          <button ion-item menuClose (click)="openTutorial()">
+            <ion-icon item-start name="hammer"></ion-icon>
+            Show Tutorial
           </button>
         </ion-list>
       </ion-content>
-  </ion-menu>
+
+    </ion-menu>
   
-  <ion-nav #NAV [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+  <!-- main navigation -->
+  <!--<ion-nav #NAV [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>-->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+</ion-split-pane>
+<!-- -->
   
+
 <!--
 <ion-header>
   <ion-navbar>

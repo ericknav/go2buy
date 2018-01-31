@@ -1,6 +1,15 @@
-<ion-tabs [selectedIndex]="mySelectedIndex" name="go2buy">
+<ion-tabs [selectedIndex]="mySelectedIndex">
+  <ion-tab [root]="tabMallRoot" tabTitle="Supermercados" tabIcon="cart"></ion-tab>
+  <ion-tab [root]="tabCategoryRoot" tabTitle="Categorias" tabIcon="list-box"></ion-tab>
+  <ion-tab [root]="tabProductRoot" tabTitle="Productos" tabIcon="cafe"></ion-tab>
+  <!--<ion-tab [root]="tabWishRoot" tabTitle="Mis Listas" tabIcon="map"></ion-tab>-->
+  <!--<ion-tab [root]="tabAboutRoot" tabTitle="About" tabIcon="information-circle"></ion-tab>-->
+</ion-tabs>
+<!--
+  <ion-tabs [selectedIndex]="mySelectedIndex" name="go2buy">
   <ion-tab [root]="tabProductsRoot" tabTitle="Products" tabIcon="calendar" tabUrlPath="conference-schedule"></ion-tab>
   <ion-tab [root]="tabMallsRoot" tabTitle="Malls" tabIcon="contacts"></ion-tab>
   <ion-tab [root]="tabWishRoot" tabTitle="My Wish" tabIcon="map"></ion-tab>
   <ion-tab [root]="tabAboutRoot" tabTitle="About" tabIcon="information-circle"></ion-tab>
 </ion-tabs>
+-->
